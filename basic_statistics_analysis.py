@@ -6,7 +6,7 @@ import numpy as np
 def main():
  
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "", ["default=", "el="])
+        opts, args = getopt.getopt(sys.argv[1:], "", ["file="])
     except getopt.GetoptError as err:
         print(str(err))
         sys.exit(2)
@@ -33,11 +33,7 @@ def main():
         cols_order = ['Alg', 'Config', 'AIQ1k', 'HCI1k', 'SD1k', 'AIQ3k', 'HCI3k', 'SD3k', 'AIQ10k', 'HCI10k', 'SD10k', 'AIQ30k', 'HCI30k', 'SD30k', 'AIQ100k', 'HCI100k', 'SD100k']
         df_pivot = df_pivot.reindex(columns=cols_order)
         df_pivot = df_pivot.round(3) 
-        # Write the reshaped dataframe to a new CSV file
-        if opt == "--default":
-            df_pivot.to_csv('reshaped_output_default.csv', index=False)
-        elif opt == "--el":
-            df_pivot.to_csv('reshaped_output_el.csv', index=False)
+        df_pivot.to_csv('reshaped_output_default.csv', index=False)
 
         # Select only the columns 'Alg', 'Config', and those starting with 'AIQ'
         df_grouped = df_pivot[[col for col in df_pivot.columns if col.startswith('AIQ') or col in ['Alg']]]
