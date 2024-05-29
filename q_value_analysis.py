@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data
-df = pd.read_json('BF(5)_1.0_100000_Sarsa_l(0.0,0.5,0.5,0.04,0.6)_2024_0526_08_48_23.log', lines=True)
+df = pd.read_json('BF(5)_1.0_100000_Q_l(0.0,0.0,0.5,0.04,0.6)_2024_0525_16_23_54.log', lines=True)
 
 # Extract Q_value and E_trace into their own columns
 df[['Q_value', 'E_trace']] = pd.json_normalize(df['agent_log'])
