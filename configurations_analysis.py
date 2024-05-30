@@ -14,7 +14,6 @@ def main():
         print(df)
         df['Ep'] = df['Ep'].astype(int)
         df['Config'] = df['q'].astype(str) + '_' + df['lambda'].astype(str) + '_' + df['alpha'].astype(str) + '_' + df['epsilon'].astype(str) + '_' + df['gamma'].astype(str)
-        input_file_name = os.path.splitext(os.path.basename(arg))[0]
         bins = [0, 1000, 3000, 10000, 30000, 100000]
         labels = ['1k', '3k', '10k', '30k', '100k']
         df['Ep'] = pd.cut(df['Ep'], bins=bins, labels=labels)
