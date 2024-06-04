@@ -11,7 +11,6 @@ def main():
 
     for opt, arg in opts:
         df = pd.read_csv(arg)
-        print(df)
         df['Ep'] = df['Ep'].astype(int)
         df['Config'] = df['q'].astype(str) + '_' + df['lambda'].astype(str) + '_' + df['alpha'].astype(str) + '_' + df['epsilon'].astype(str) + '_' + df['gamma'].astype(str)
         bins = [0, 1000, 3000, 10000, 30000, 100000]
