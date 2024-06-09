@@ -17,8 +17,9 @@ def main():
                 if len(line.split(',')) > 7:
                     firstHalf = line.split(',')[0:7]
                     secondHalf = line.split(',')[7:]
-                    
                     if len(secondHalf) > 1:
+                        if firstHalf[6] == 'Q_l' and secondHalf[1] == '0.0':
+                            firstHalf[6] = 'Q'
                         secondHalf = '_'.join(secondHalf)
                     else:
                         secondHalf = secondHalf[0]
@@ -30,7 +31,7 @@ def main():
 
         df = pd.DataFrame(data[1:], columns=data[0])
         df = df.rename(columns={'AGNT+AGNTconf': 'Alg'})
-        df.to_csv('output.csv', index=False)
+        df.to_csv('formated_prev_data.csv', index=False)
 
 if __name__ == "__main__":
     main()
