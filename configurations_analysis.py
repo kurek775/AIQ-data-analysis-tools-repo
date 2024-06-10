@@ -16,8 +16,9 @@ def main():
             df = pd.read_csv(file)
             df['EL'] = df['EL'].astype(int)
             if 'Config' not in df.columns:
-                df.loc[df['lambda'] == 0, 'Alg'] = df['Alg'].str.replace('_l', '')
+                df.loc[df['lambda'] == 0.0, 'Alg'] = df['Alg'].str.replace('_l', '')
                 df['Config'] = df['q'].astype(str) + '_' + df['lambda'].astype(str) + '_' + df['alpha'].astype(str) + '_' + df['epsilon'].astype(str) + '_' + df['gamma'].astype(str)
+            
             bins = [0, 1000, 3000, 10000, 30000, 100000]
             labels = ['1k', '3k', '10k', '30k', '100k']
             df['EL'] = pd.cut(df['EL'], bins=bins, labels=labels)
@@ -37,7 +38,7 @@ def main():
             file_list.append(df_pivot)
 
         save_df = pd.concat(file_list)    
-        save_df.to_csv('basic_config_results.csv', index=False)
+        save_df.to_csv('basic_config_results_.csv', index=False)
         
 
 
