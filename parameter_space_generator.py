@@ -14,8 +14,8 @@ def main():
                     for a_ in a_values:
                         for e_ in e_values:
                             for g_ in g_values:
-                                l_config.add(f"Sarsa_l,0,{l_:.2f},{a_:.2f},{e_:.3f},{g_:.2f}")
-                                no_l_config.add(f"Sarsa_l,0,0,{a_:.2f},{e_:.3f},{g_:.2f}")
+                                l_config.add(f"Sarsa_l,0.0,{l_:.2f},{a_:.2f},{e_:.3f},{g_:.2f}")
+                                no_l_config.add(f"Sarsa_l,0.0,0.0,{a_:.2f},{e_:.3f},{g_:.2f}")
             
     
                 for config in no_l_config:
