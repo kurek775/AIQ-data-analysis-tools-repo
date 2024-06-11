@@ -4,20 +4,21 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import graphviz
 from sklearn.tree import _tree
-
+import datetime
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('file_name', help='The name of the CSV file to read')
     parser.add_argument('episode_length', type=int, help='The episode length')
     args = parser.parse_args()
     df = pd.read_csv(args.file_name)
+    el = args.episode_length
 
     df[['lambda', 'alpha', 'epsilon', 'gamma']] = df['Config'].str.split('_', expand=True).iloc[:, 1:]
 
     for col in ['lambda', 'alpha', 'epsilon', 'gamma']:
         df[col] = pd.to_numeric(df[col])
 
-    df['AIQ'] = df[f'AIQ{args.episode_length}k']
+    df['AIQ'] = df[f'AIQ{el}k']
 
 
     # Split the dataset into features and labels
@@ -45,8 +46,7 @@ def main():
     graph = graphviz.Source(dot_data)
 
     # Save the graph to a PDF file (you can also save it to a PNG or other image file)
-    graph.render("decision_tree", format='png')
-
+    graph.render('decision_tree_{}_{}'.format(el, datetime.datetime.now().strftime('%Y-%m-%d_%H%M%S')), format='png')
     def tree_to_rules(tree, feature_names):
         tree_ = tree.tree_
         feature_name = [
@@ -55,7 +55,7 @@ def main():
         ]
 
         # Open the file in write mode
-        with open('rules.txt', 'w') as f:
+        with open('rules_{}_{}.txt'.format(el, datetime.datetime.now().strftime('%Y-%m-%d_%H%M%S')), 'w') as f:
             def recurse(node, previous_rules):
                 if tree_.feature[node] != _tree.TREE_UNDEFINED:
                     name = feature_name[node]
