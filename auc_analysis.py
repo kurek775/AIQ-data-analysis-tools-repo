@@ -20,6 +20,8 @@ def main():
             if 'Config' not in df.columns:
                 df.loc[df['lambda'] == 0, 'Alg'] = df['Alg'].str.replace('_l', '')
                 df['Config'] = df['q'].astype(str) + '_' + df['lambda'].astype(str) + '_' + df['alpha'].astype(str) + '_' + df['epsilon'].astype(str) + '_' + df['gamma'].astype(str)
+       
+            #df = df[df['Alg'].isin([' Sarsa', 'Q',' Sarsa_l', 'Q_l'])]
             df = df.sort_values('EL')
             df_max = df.loc[df[df['EL'] == 100000].groupby('Alg')['AIQ'].idxmax()]
             df = df[df.apply(lambda row: row['Config'] == df_max.loc[df_max['Alg'] == row['Alg'], 'Config'].values[0], axis=1)]

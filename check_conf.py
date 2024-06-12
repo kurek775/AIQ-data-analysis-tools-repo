@@ -6,8 +6,6 @@ def main():
     df = pd.read_csv('basic_config_results_.csv')
     if 'Config' not in gen.columns:
         gen['Config'] = gen['q'].astype(str) + '_' + gen['lambda'].astype(str) + '_' + gen['alpha'].astype(str) + '_' + gen['epsilon'].astype(str) + '_' + gen['gamma'].astype(str)
-    print(df)
-    print(gen)
 
     for config in gen['Config']:
         if config not in df['Config'].values:
