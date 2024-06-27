@@ -12,11 +12,14 @@ def main():
         sys.exit(2)
 
     for opt, arg in opts:
+        short = True
         files = arg.split(',')
         file_list = []
         for file in files:
             df = pd.read_csv(file)
             df['EL'] = df['EL'].astype(int)
+            if short:
+                df = df[df['EL'] <= 10000]
             df = df[df['Alg'].isin([' Sarsa_l', 'Q', 'Q(λ)'])]
             if not df.empty:
                 if 'Config' not in df.columns:
@@ -26,7 +29,7 @@ def main():
                 df = df.sort_values('EL')
 
                 file_list.append(df)
-            param = 'HCI'
+            param = 'AIQ'
             df = pd.concat(file_list)
             for conf in df['Config'].unique():
                 df_conf = df[df['Config'] == conf]
@@ -39,7 +42,10 @@ def main():
                     plt.xlabel('EL')
                     plt.ylabel(param)
                     plt.legend()
-                    plt.savefig(f'best_pair_plot_{param}_{conf}.png', dpi=300)
+                    if short:
+                        plt.savefig(f'best_pair_plot_{param}_{conf}10K.png', dpi=300)
+                    else:
+                        plt.savefig(f'best_pair_plot_{param}_{conf}.png', dpi=300)
                     plt.show()
 
 if __name__ == "__main__":

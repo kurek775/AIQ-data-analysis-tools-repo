@@ -49,6 +49,7 @@ def main():
         plt.show()
         for alg in df['Alg'].unique():
             subset = df[df['Alg'] == alg]
+            print(subset)
             #if subset['Alg'].str.contains('Sarsa').any():  
             plt.plot(subset['EL'], subset['HCI'], label=f"{alg}")
 
