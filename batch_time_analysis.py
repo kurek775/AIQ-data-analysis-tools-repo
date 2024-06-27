@@ -13,7 +13,7 @@ with open('batch-AIQ-5.log', 'r') as file:
 config = []
 total_duration = datetime.timedelta()
 
-for index, row in enumerate(log_lines[:-1]):  # Exclude the last line to avoid index out of range
+for index, row in enumerate(log_lines[:-1]): 
     if parse_line(row)[0] == parse_line(log_lines[index+1])[0]:
         start = parse_line(row)
         end = parse_line(log_lines[index+1])[1]

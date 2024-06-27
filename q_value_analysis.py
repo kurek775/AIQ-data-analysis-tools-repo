@@ -28,7 +28,7 @@ def is_valid_json_partial(file_path, num_lines=600002):
 
 # Use the modified function in your script
 if not is_valid_json_partial(args.filename):
-    print(f"Soubor {args.filename} není validní JSON nebo neobsahuje dostatek řádků. Přeskakuji...")
+    print(f"File {args.filename} is not valid JSON. skipped...")
     exit(1)
 
 with open(args.filename, 'r') as file:

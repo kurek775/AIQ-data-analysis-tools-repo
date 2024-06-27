@@ -20,6 +20,10 @@ def main():
                     if len(secondHalf) > 1:
                         if firstHalf[6] == 'Q_l' and secondHalf[1] == '0.0':
                             firstHalf[6] = 'Q'
+                        if firstHalf[6] == 'Q_l' and secondHalf[1] != '0.0':
+                            firstHalf[6] = 'Q(λ)'
+                        if firstHalf[6] == 'H_l':
+                            firstHalf[6] = 'HLQ(λ)'
                         secondHalf = '_'.join(secondHalf)
                     else:
                         secondHalf = secondHalf[0]

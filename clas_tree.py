@@ -24,7 +24,6 @@ def main():
     # Split the dataset into features and labels
     X = df[['lambda', 'alpha', 'epsilon', 'gamma']]
     y = df['AIQ']
-    print(X)
     # Create an instance of the DecisionTreeRegressor
     reg = tree.DecisionTreeRegressor(max_depth=3)
 
